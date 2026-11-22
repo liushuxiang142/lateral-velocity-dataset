@@ -1,4 +1,10 @@
-# Real-Vehicle Lateral-Velocity Dataset
+﻿# Real-Vehicle Lateral-Velocity Dataset
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440814.svg)](https://doi.org/10.5281/zenodo.24440814)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
+**Archived release:** v1.0.0 — DOI [10.5281/zenodo.24440814](https://doi.org/10.5281/zenodo.24440814)
+**Concept DOI (always resolves to the latest version):** [10.5281/zenodo.24440813](https://doi.org/10.5281/zenodo.24440813)
 
 Data accompanying the manuscript
 
@@ -74,8 +80,7 @@ purpose, provided appropriate credit is given.
 
 ## 6. Citation
 
-If you use this dataset, please cite the archived release (DOI is minted by
-Zenodo on the first GitHub release):
+If you use this dataset, please cite the archived release:
 
 ```bibtex
 @dataset{liu2026lateral,
@@ -87,8 +92,8 @@ Zenodo on the first GitHub release):
                Sim-to-Real Gap''},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.XXXXXXX},
-  url       = {https://doi.org/10.5281/zenodo.XXXXXXX}
+  doi       = {10.5281/zenodo.24440814},
+  url       = {https://doi.org/10.5281/zenodo.24440814}
 }
 ```
 
@@ -96,3 +101,4 @@ Zenodo on the first GitHub release):
 
 Letian Gao (corresponding author) — gao_letian@tongji.edu.cn
 College of Automotive and Energy Engineering, Tongji University, Shanghai, China.
+
