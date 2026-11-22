@@ -1,0 +1,17 @@
+﻿# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# LaTeX build products
+*.aux
+*.log
+*.out
+*.synctex.gz
