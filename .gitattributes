@@ -1,0 +1,4 @@
+# Store every file exactly as it is: no end-of-line conversion, no
+# text normalisation.  The CSVs are measured data and must stay
+# byte-identical to what the acquisition system produced.
+* -text
