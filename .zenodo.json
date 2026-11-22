@@ -1,0 +1,25 @@
+{
+  "title": "Real-Vehicle Lateral-Velocity Dataset for \"Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap\"",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "creators": [
+    {"name": "Liu, Shuxiang", "affiliation": "College of Automotive and Energy Engineering, Tongji University, Shanghai, China"},
+    {"name": "Gao, Letian", "affiliation": "College of Automotive and Energy Engineering, Tongji University, Shanghai, China"},
+    {"name": "Mei, Jiarui", "affiliation": "College of Automotive and Energy Engineering, Tongji University, Shanghai, China"},
+    {"name": "Huang, Zihao", "affiliation": "College of Automotive and Energy Engineering, Tongji University, Shanghai, China"},
+    {"name": "Xia, Xin", "affiliation": "Department of Mechanical Engineering, University of Michigan-Dearborn, Dearborn, MI, USA"},
+    {"name": "Xiong, Lu", "affiliation": "College of Automotive and Energy Engineering, Tongji University, Shanghai, China"}
+  ],
+  "keywords": [
+    "vehicle lateral velocity estimation",
+    "cornering stiffness learning",
+    "sim-to-real transfer",
+    "Kalman filter",
+    "sensor data fusion",
+    "real-vehicle dataset"
+  ],
+  "description": "<p>Three continuous real-vehicle recordings from a closed proving ground (Shanghai, China), sampled at 100 Hz and synchronised on a common time grid, providing about 4.4 min of aggressive-driving data.</p><ul><li><code>data/1.csv</code> &mdash; 8 420 rows, 118 columns, 84.2 s (Trial 1, used for sim-to-real fine-tuning)</li><li><code>data/2.csv</code> &mdash; 9 216 rows, 121 columns, 92.1 s (Trial 2, used for sim-to-real fine-tuning)</li><li><code>data/3.csv</code> &mdash; 8 819 rows, 121 columns, 88.2 s (Trial 3, held-out independent test set)</li></ul><p>Channels include MEMS IMU tri-axial accelerations and angular rates, four wheel speeds, steering-wheel angle, body-frame velocities, and an RTK-GNSS/FOG velocity reference. Trials 1 and 2 are used to fine-tune the physics-guided LSTM, whereas Trial 3 is excluded from training and covers four driving regimes (Normal, Small Lateral, Slalom, Large Lateral).</p>",
+  "notes": "Data accompanying the manuscript \"Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap\". Released under CC BY 4.0."
+}
