@@ -1,12 +1,11 @@
-﻿# Real-Vehicle Lateral-Velocity Dataset
+# CarSim Simulation Dataset for Vehicle Lateral-Velocity Estimation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440814.svg)](https://doi.org/10.5281/zenodo.24440814)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440813.svg)](https://doi.org/10.5281/zenodo.24440813)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-**Archived release:** v1.0.0 — DOI [10.5281/zenodo.24440814](https://doi.org/10.5281/zenodo.24440814)
 **Concept DOI (always resolves to the latest version):** [10.5281/zenodo.24440813](https://doi.org/10.5281/zenodo.24440813)
 
-Data accompanying the manuscript
+Simulation data accompanying the manuscript
 
 > **Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap**
 
@@ -16,60 +15,81 @@ Shuxiang Liu, Letian Gao, Jiarui Mei, Zihao Huang, Xin Xia, and Lu Xiong
 
 ## 1. What is in this repository
 
-Three continuous real-vehicle recordings from a closed proving ground
-(Shanghai, China), sampled at **100 Hz** (10 ms) and synchronised on a common
-time grid. Together they contain about 4.4 min of valid aggressive-driving data.
+Nine CarSim runs exported from the high-fidelity vehicle-dynamics model used to
+build the pre-training dataset of the manuscript. Each run is a continuous log
+sampled at **100 Hz** with **580 channels**.
 
-| File | Rows | Columns | Duration | Role in the paper |
-|---|---|---|---|---|
-| `data/1.csv` | 8 420 | 118 | 84.2 s | Trial 1 — sim-to-real fine-tuning |
-| `data/2.csv` | 9 216 | 121 | 92.1 s | Trial 2 — sim-to-real fine-tuning |
-| `data/3.csv` | 8 819 | 121 | 88.2 s | Trial 3 — held-out independent test set |
+| Archive | Runs | Raw size | Download |
+|---|---|---|---|
+| `data/carsim_sim_runs_121-123.zip` | 121, 122, 123 | 212 MB | 81 MB |
+| `data/carsim_sim_runs_124-126.zip` | 124, 125, 126 | 221 MB | 82 MB |
+| `data/carsim_sim_runs_127-129.zip` | 127, 128, 129 | 236 MB | 88 MB |
 
-Trials 1 and 2 are used to fine-tune the physics-guided LSTM, whereas Trial 3 is
-excluded from training and is used only for evaluation, so it covers the four
-driving regimes discussed in the paper (Normal, Small Lateral, Slalom, and
-Large Lateral).
+Each zip contains the original CSV files, byte-for-byte as exported by CarSim.
+Unzip into one folder before use.
 
-`1.csv` carries 118 columns; `2.csv` and `3.csv` carry three additional
-smoothed reference channels (`VE_smooth`, `VN_smooth`, `VU_smooth`).
+| Run | Rows | Duration | Road friction μ |
+|---|---|---|---|
+| 121 | 10 501 | 105 s | 0.50 |
+| 122 | 9 501 | 95 s | 0.50 |
+| 123 | 9 501 | 95 s | 0.50 |
+| 124 | 9 501 | 95 s | 0.50 |
+| 125 | 9 501 | 95 s | 0.50 |
+| 126 | 11 001 | 110 s | 0.70 |
+| 127 | 10 001 | 100 s | 0.70 |
+| 128 | 11 001 | 110 s | 0.70 |
+| 129 | 11 001 | 110 s | 0.70 |
 
-## 2. Reference and measurement systems
+All runs start from rest and cover straight running, transient steering
+reversals and sustained near-limit cornering, i.e. the linear region as well as
+nonlinear tire saturation.
 
-| System | Content | Purpose |
-|---|---|---|
-| GJ-VSMS2000 integrated navigation (FOG + RTK-GNSS) | `Latitude_Fusion`, `Longitude_Fusion`, `ins_VE`, `ins_VN`, `ins_Heading_fusion`, … | Velocity reference, used for slip-angle construction during fine-tuning and for evaluation |
-| ASM 330 MEMS IMU | `IMU_ACC_g_*` (g), `IMU_Gyro_degps_*` (deg/s) | Network input |
-| Four wheel-speed sensors | `FL/FR/RL/RRwheelspeed` | Network input, longitudinal speed |
-| Steering-angle sensor | `SteeringAngle`, `SteeringAngleABS`, `Steer` | Network input |
-| Body-frame velocities | `Vx_body`, `Vy_body`, `Vz_body` | Lateral-velocity target |
+## 2. Units
 
-## 3. Columns used by the estimator
+The export keeps CarSim's default display units, so the columns are **not**
+uniformly SI:
+
+| Quantity | Unit |
+|---|---|
+| `Vx`, `Vy`, `Vz` | km/h |
+| `Ax`, `Ay`, `Az` | g |
+| `Yaw`, `Roll`, `Pitch` | deg/s (rates) |
+| `Steer_SW`, `Alpha_*`, `Camber*`, `Beta` | deg |
+| `Fy_*`, `Fx_*`, `Fz_*` | N |
+| `Mx_*`, `My_*`, `Mz_*` | N·m |
+| `Station`, `Xcg_TM`, `X_*`, `Y_*`, `Z_*` | m |
+| `Kappa_*` | – (slip ratio) |
+
+Column names are unchanged from the CarSim export; `_L1`, `_L2`, `_R1`, `_R2`
+denote the front-left, rear-left, front-right and rear-right wheels.
+
+## 3. Channels used by the estimator
 
 | Column | Unit | Description |
 |---|---|---|
-| `IMU_ACC_g_x/y/z` | g | Tri-axial acceleration |
-| `IMU_Gyro_degps_x/y/z` | deg/s | Tri-axial angular rate |
-| `FLwheelspeed`, `FRwheelspeed`, `RLwheelspeed`, `RRwheelspeed` | m/s | Wheel speeds |
-| `SteeringAngle` | deg | Steering-wheel angle (δ_sw) |
-| `Time` | s | Common time base |
-| `Vx_body`, `Vy_body` | m/s | Longitudinal / lateral body velocity |
-| `ins_VE`, `ins_VN` | m/s | Reference east / north velocity |
-
-The full 118/121-column header is preserved exactly as logged by the data
-acquisition system; unused channels are left untouched for traceability.
+| `Time` | s | Time base, 10 ms grid |
+| `Vx`, `Vy` | km/h | Longitudinal / lateral velocity of the body |
+| `Yaw` | deg/s | Yaw rate |
+| `Ax`, `Ay` | g | Longitudinal / lateral acceleration |
+| `Steer_SW` | deg | Steering-wheel angle |
+| `Fy_L1`, `Fy_L2`, `Fy_R1`, `Fy_R2` | N | Wheel lateral forces |
+| `Alpha_L1`, `Alpha_L2`, `Alpha_R1`, `Alpha_R2` | deg | Wheel slip angles |
+| `Fz_L1`, `Fz_L2`, `Fz_R1`, `Fz_R2` | N | Wheel vertical loads |
+| `MuX_*`, `MuY_*` | – | Tire–road friction coefficients |
 
 ## 4. Loading
 
 ```python
-import pandas as pd
+import zipfile, pandas as pd
 
-df = pd.read_csv("data/3.csv")
-t  = df["Time"].to_numpy()                 # seconds, 10 ms grid
-ax = df["IMU_ACC_g_x"].to_numpy()          # g
-ay = df["IMU_ACC_g_y"].to_numpy()
-r  = df["IMU_Gyro_degps_z"].to_numpy()     # deg/s
-vy = df["Vy_body"].to_numpy()              # m/s
+with zipfile.ZipFile("data/carsim_sim_runs_121-123.zip") as z:
+    z.extractall("sim")                     # -> sim/121.csv, sim/122.csv, sim/123.csv
+
+df = pd.read_csv("sim/121.csv")
+t  = df["Time"].to_numpy()                  # s
+vx = df["Vx"].to_numpy() / 3.6              # km/h -> m/s
+vy = df["Vy"].to_numpy() / 3.6
+r  = df["Yaw"].to_numpy()                   # deg/s
 ```
 
 ## 5. License
@@ -80,20 +100,17 @@ purpose, provided appropriate credit is given.
 
 ## 6. Citation
 
-If you use this dataset, please cite the archived release:
-
 ```bibtex
-@dataset{liu2026lateral,
+@dataset{liu2026carsim,
   author    = {Liu, Shuxiang and Gao, Letian and Mei, Jiarui and
                Huang, Zihao and Xia, Xin and Xiong, Lu},
-  title     = {Real-Vehicle Lateral-Velocity Dataset for
-               ``Vehicle Lateral Velocity Estimation System Embedding
-               Time-Varying Cornering Stiffness Learning Considering
-               Sim-to-Real Gap''},
+  title     = {CarSim Simulation Dataset for ``Vehicle Lateral Velocity
+               Estimation System Embedding Time-Varying Cornering Stiffness
+               Learning Considering Sim-to-Real Gap''},
   year      = {2026},
   publisher = {Zenodo},
-  doi       = {10.5281/zenodo.24440814},
-  url       = {https://doi.org/10.5281/zenodo.24440814}
+  doi       = {10.5281/zenodo.24440813},
+  url       = {https://doi.org/10.5281/zenodo.24440813}
 }
 ```
 
@@ -101,4 +118,3 @@ If you use this dataset, please cite the archived release:
 
 Letian Gao (corresponding author) — gao_letian@tongji.edu.cn
 College of Automotive and Energy Engineering, Tongji University, Shanghai, China.
-

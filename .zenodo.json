@@ -1,5 +1,5 @@
 {
-  "title": "Real-Vehicle Lateral-Velocity Dataset for \"Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap\"",
+  "title": "CarSim Simulation Dataset for \"Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap\"",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "cc-by-4.0",
@@ -18,8 +18,8 @@
     "sim-to-real transfer",
     "Kalman filter",
     "sensor data fusion",
-    "real-vehicle dataset"
+    "CarSim simulation dataset"
   ],
-  "description": "<p>Three continuous real-vehicle recordings from a closed proving ground (Shanghai, China), sampled at 100 Hz and synchronised on a common time grid, providing about 4.4 min of aggressive-driving data.</p><ul><li><code>data/1.csv</code> &mdash; 8 420 rows, 118 columns, 84.2 s (Trial 1, used for sim-to-real fine-tuning)</li><li><code>data/2.csv</code> &mdash; 9 216 rows, 121 columns, 92.1 s (Trial 2, used for sim-to-real fine-tuning)</li><li><code>data/3.csv</code> &mdash; 8 819 rows, 121 columns, 88.2 s (Trial 3, held-out independent test set)</li></ul><p>Channels include MEMS IMU tri-axial accelerations and angular rates, four wheel speeds, steering-wheel angle, body-frame velocities, and an RTK-GNSS/FOG velocity reference. Trials 1 and 2 are used to fine-tune the physics-guided LSTM, whereas Trial 3 is excluded from training and covers four driving regimes (Normal, Small Lateral, Slalom, Large Lateral).</p>",
+  "description": "<p>Nine CarSim runs exported from the high-fidelity vehicle-dynamics model used to build the simulation pre-training dataset of the manuscript, sampled at 100 Hz with 580 channels per run.</p><ul><li><code>data/carsim_sim_runs_121-123.zip</code> &mdash; runs 121, 122, 123 (95&ndash;105 s each, road friction &mu; = 0.50)</li><li><code>data/carsim_sim_runs_124-126.zip</code> &mdash; runs 124, 125, 126 (95&ndash;110 s each, &mu; = 0.50 / 0.70)</li><li><code>data/carsim_sim_runs_127-129.zip</code> &mdash; runs 127, 128, 129 (100&ndash;110 s each, &mu; = 0.70)</li></ul><p>Channels include body velocities and accelerations, yaw rate, steering-wheel angle, per-wheel lateral forces, slip angles, vertical loads and tire&ndash;road friction coefficients. All runs start from rest and cover the linear tire region as well as nonlinear saturation. Units follow the CarSim display export: km/h for velocities, g for accelerations, deg for angles, N and N&middot;m for forces and moments.</p>",
   "notes": "Data accompanying the manuscript \"Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap\". Released under CC BY 4.0."
 }

@@ -1,14 +1,13 @@
 ﻿cff-version: 1.2.0
 message: "If you use this dataset, please cite it as below."
 type: dataset
-title: "Real-Vehicle Lateral-Velocity Dataset for 'Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap'"
+title: "CarSim Simulation Dataset for 'Vehicle Lateral Velocity Estimation System Embedding Time-Varying Cornering Stiffness Learning Considering Sim-to-Real Gap'"
 abstract: >-
-  Three 100 Hz real-vehicle recordings from a closed proving ground, used for
-  fine-tuning and for the independent evaluation of a physics-guided
-  cornering-stiffness learning and Kalman-filtering lateral-velocity estimator.
-  Channels include MEMS IMU accelerations and angular rates, four wheel speeds,
-  steering-wheel angle, body-frame velocities, and an RTK-GNSS/FOG velocity
-  reference.
+  Nine CarSim runs (100 Hz, 580 channels) used to build the simulation
+  pre-training dataset of a physics-guided cornering-stiffness learning and
+  Kalman-filtering lateral-velocity estimator. Channels include body
+  velocities and accelerations, yaw rate, steering-wheel angle, per-wheel
+  lateral forces, slip angles, vertical loads and tire-road friction.
 authors:
   - family-names: Liu
     given-names: Shuxiang
@@ -22,10 +21,10 @@ authors:
     given-names: Xin
   - family-names: Xiong
     given-names: Lu
-version: 1.0.0
-date-released: 2026-11-22
+version: 2.0.0
+date-released: 2026-11-23
 license: CC-BY-4.0
-doi: 10.5281/zenodo.24440814
+doi: 10.5281/zenodo.24440813
 repository-code: https://github.com/xinjingping/lateral-velocity-dataset
 keywords:
   - vehicle lateral velocity estimation
@@ -34,4 +33,6 @@ keywords:
   - Kalman filter
   - sensor fusion
   - real-vehicle dataset
+
+
 
