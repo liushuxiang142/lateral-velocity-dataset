@@ -1,9 +1,10 @@
-# CarSim Simulation Dataset for Vehicle Lateral-Velocity Estimation
+﻿# CarSim Simulation Dataset for Vehicle Lateral-Velocity Estimation
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24440813.svg)](https://doi.org/10.5281/zenodo.24440813)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 **Concept DOI (always resolves to the latest version):** [10.5281/zenodo.24440813](https://doi.org/10.5281/zenodo.24440813)
+**Version DOI (this release, v2.0.0):** [10.5281/zenodo.24456059](https://doi.org/10.5281/zenodo.24456059)
 
 Simulation data accompanying the manuscript
 
@@ -118,3 +119,4 @@ purpose, provided appropriate credit is given.
 
 Letian Gao (corresponding author) — gao_letian@tongji.edu.cn
 College of Automotive and Energy Engineering, Tongji University, Shanghai, China.
+
