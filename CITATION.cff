@@ -25,7 +25,7 @@ version: 2.0.0
 date-released: 2026-11-23
 license: CC-BY-4.0
 doi: 10.5281/zenodo.24440813
-repository-code: https://github.com/xinjingping/lateral-velocity-dataset
+repository-code: https://github.com/liushuxiang142/lateral-velocity-dataset
 keywords:
   - vehicle lateral velocity estimation
   - cornering stiffness learning
@@ -33,6 +33,7 @@ keywords:
   - Kalman filter
   - sensor fusion
   - real-vehicle dataset
+
 
 
 
